@@ -1155,6 +1155,120 @@ local gametab = win:Tab("Game")
 local uitab = win:Tab("User-Interface")
 local credstab = win:Tab("Credits")
 
+function randomString()
+	local length = math.random(10,20)
+	local array = {}
+	for i = 1, length do
+		array[i] = string.char(math.random(32, 126))
+	end
+	return table.concat(array)
+end
+
+IYMouse = game.Players.LocalPlayer:GetMouse()
+
+    function getRoot(char)
+        local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+        return rootPart
+    end
+
+    FLYING = false
+    QEfly = true
+    iyflyspeed = 1
+    vehicleflyspeed = 1
+    function sFLY(vfly)
+        repeat wait() until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and getRoot(game.Players.LocalPlayer.Character) and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        repeat wait() until IYMouse
+        if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
+
+        local T = getRoot(game.Players.LocalPlayer.Character)
+        local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+        local lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+        local SPEED = 0
+
+        local function FLY()
+            FLYING = true
+            local BG = Instance.new('BodyGyro')
+            local BV = Instance.new('BodyVelocity')
+            BG.P = 9e4
+            BG.Parent = T
+            BV.Parent = T
+            BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+            BG.cframe = T.CFrame
+            BV.velocity = Vector3.new(0, 0, 0)
+            BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+            task.spawn(function()
+                repeat wait()
+                    if not vfly and game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+                        game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
+                    end
+                    if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0 then
+                        SPEED = 50
+                    elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0) and SPEED ~= 0 then
+                        SPEED = 0
+                    end
+                    if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 or (CONTROL.Q + CONTROL.E) ~= 0 then
+                        BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+                        lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+                    elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and (CONTROL.Q + CONTROL.E) == 0 and SPEED ~= 0 then
+                        BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+                    else
+                        BV.velocity = Vector3.new(0, 0, 0)
+                    end
+                    BG.cframe = workspace.CurrentCamera.CoordinateFrame
+                until not FLYING
+                CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+                lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+                SPEED = 0
+                BG:Destroy()
+                BV:Destroy()
+                if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+                    game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+                end
+            end)
+        end
+        flyKeyDown = IYMouse.KeyDown:Connect(function(KEY)
+            if KEY:lower() == 'w' then
+                CONTROL.F = (vfly and vehicleflyspeed or iyflyspeed)
+            elseif KEY:lower() == 's' then
+                CONTROL.B = - (vfly and vehicleflyspeed or iyflyspeed)
+            elseif KEY:lower() == 'a' then
+                CONTROL.L = - (vfly and vehicleflyspeed or iyflyspeed)
+            elseif KEY:lower() == 'd' then 
+                CONTROL.R = (vfly and vehicleflyspeed or iyflyspeed)
+            elseif QEfly and KEY:lower() == 'e' then
+                CONTROL.Q = (vfly and vehicleflyspeed or iyflyspeed)*2
+            elseif QEfly and KEY:lower() == 'q' then
+                CONTROL.E = -(vfly and vehicleflyspeed or iyflyspeed)*2
+            end
+            pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Track end)
+        end)
+        flyKeyUp = IYMouse.KeyUp:Connect(function(KEY)
+            if KEY:lower() == 'w' then
+                CONTROL.F = 0
+            elseif KEY:lower() == 's' then
+                CONTROL.B = 0
+            elseif KEY:lower() == 'a' then
+                CONTROL.L = 0
+            elseif KEY:lower() == 'd' then
+                CONTROL.R = 0
+            elseif KEY:lower() == 'e' then
+                CONTROL.Q = 0
+            elseif KEY:lower() == 'q' then
+                CONTROL.E = 0
+            end
+        end)
+        FLY()
+    end
+
+    function NOFLY()
+        FLYING = false
+        if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
+        if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+            game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+        end
+        pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
+    end
+
 local var = {
     ['Player'] = {
         ['WalkSpeed'] = 16,
@@ -1218,6 +1332,67 @@ end)
 wait()
 end
 end)
+
+end)
+
+local NoClipping = nil
+floatName = randomString()
+
+function NoclipLoop()
+    if Clip == false and speaker.Character ~= nil then
+        for _, child in pairs(speaker.Character:GetDescendants()) do
+            if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+                child.CanCollide = false
+            end
+        end
+    end
+end
+
+maintab:Toggle('NoClip', false, function(value)
+
+    getgenv().nokiz = value
+        if getgenv().nokiz == true then
+
+            Clip = false
+            wait(0.1)
+            local function NoclipLoop()
+                if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+                    for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                        if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+                            child.CanCollide = false
+                        end
+                    end
+                end
+            end
+            Noclipping = game:GetService("RunService").Stepped:Connect(NoclipLoop)
+
+        else if getgenv().nokiz == false then
+
+            if Noclipping then
+                Noclipping:Disconnect()
+            end
+            Clip = true
+        
+        end
+    end 
+
+end)
+
+maintab:Toggle('Fly', false, function(value)
+    
+    getgenv().flyerwow = value
+
+    if getgenv().flyerwow == true then
+        
+        NOFLY()
+        wait()
+        sFLY()
+        
+        else if getgenv().flyerwow == false then
+            NOFLY()
+            
+        end
+    end
 
 end)
 
