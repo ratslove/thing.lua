@@ -147,6 +147,17 @@ if game.PlaceId == 155615604 then
                 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = var.Player.WalkSpeed
             end
         end)
+
+        game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+        
+            char:WaitForChild("Humanoid")
+            char.Humanoid.Changed:Connect(function(prop)
+                if prop == "WalkSpeed" and char.Humanoid.WalkSpeed ~= var.Player.WalkSpeed then
+                    char.Humanoid.WalkSpeed = var.Player.WalkSpeed
+                end
+            end)
+
+        end)
     
     end)
     
