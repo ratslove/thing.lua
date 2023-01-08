@@ -367,7 +367,7 @@ end)
 
 coroutine.wrap(function()
 	while wait() do
-		if States.InfStamina then
+		if States.InfStamina == true then
             local plr = game:GetService("Players").LocalPlayer
                         for i,v in next, getgc() do 
                             if type(v) == "function" and getfenv(v).script and getfenv(v).script == plr.Character.ClientInputHandler then 
