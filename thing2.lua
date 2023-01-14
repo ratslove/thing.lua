@@ -210,19 +210,30 @@ if game.PlaceId == 155615604 then
     
     maintab:Toggle('Infinite Jump', false, function(value)
 
-        getgenv().inf = value
-        spawn(function()
-            while inf == true do
-                if (inf == false) then break end
-    game:GetService("UserInputService").JumpRequest:connect(function()
-        if inf then
-            game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+        getgenv().infjumper = value
+        
+        if getgenv().infjumper == true then
+            
+            _G.infinjump = true
+            
+            local Player = game:GetService("Players").LocalPlayer
+            local Mouse = Player:GetMouse()
+            Mouse.KeyDown:connect(function(k)
+                if _G.infinjump then
+                    if k:byte() == 32 then
+                        Humanoid = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+                        Humanoid:ChangeState("Jumping")
+                    end
+                end
+            end)
+    
+            else if getgenv().infjumper == false then
+                    
+                _G.infinjump = false
+                
+            end
         end
-    end)
-    wait()
-    end
-    end)
-
+    
     end)
     
     maintab:Toggle('Fly', false, function(value)
@@ -1331,18 +1342,29 @@ end)
 
 maintab:Toggle('Infinite Jump', false, function(value)
 
-    getgenv().inf = value
-    spawn(function()
-        while inf == true do
-            if (inf == false) then break end
-game:GetService("UserInputService").JumpRequest:connect(function()
-    if inf then
-        game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+    getgenv().infjumper = value
+    
+    if getgenv().infjumper == true then
+        
+        _G.infinjump = true
+        
+        local Player = game:GetService("Players").LocalPlayer
+        local Mouse = Player:GetMouse()
+        Mouse.KeyDown:connect(function(k)
+            if _G.infinjump then
+                if k:byte() == 32 then
+                    Humanoid = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+                    Humanoid:ChangeState("Jumping")
+                end
+            end
+        end)
+
+        else if getgenv().infjumper == false then
+                
+            _G.infinjump = false
+            
+        end
     end
-end)
-wait()
-end
-end)
 
 end)
 
