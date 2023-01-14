@@ -1429,37 +1429,84 @@ maintab:Toggle('Fly', false, function(value)
 
 end)
 
-gametab:Button('Fix Lighting', function(value)
+gametab:Toggle('Fix Lighting', false, function(value)
 
+    getgenv().fixthelight = value
+
+    if getgenv().fixthelight == true then
+    
+    States.FixLighter = true
+    
     game.Lighting.FogEnd = 100000
     game.Lighting.FogStart = 16
 
+        else if getgenv().fixthelight == false then
+
+            States.FixLighter = false
+            
+            game.Lighting.FogEnd = 85
+            game.Lighting.FogStart = 16
+
+        end
+    end
+
 end)
 
-gametab:Button('Player ESP', function(value)
+coroutine.wrap(function()
+	while wait() do
+		if States.InfStamina == true then
+            game.Lighting.FogEnd = 100000
+            game.Lighting.FogStart = 16
+        end
+    end
+end)
 
-            States.PlayersEsp = true
+getgenv().cham = false
+getgenv().nameESP = false
+getgenv().boxESP = false
 
-            local Players = game:GetService("Players")
-            local RunService = game:GetService("RunService")
-            local Highlight = Instance.new("Highlight")
-            Highlight.Name = "Highlight"
 
-            function ApplyToCurrentPlayers()
-                for i,player in pairs(Players:GetChildren()) do 
-                    repeat wait() until player.Character
-                    if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
-                        local HighlightClone = Highlight:Clone()
-                        HighlightClone.Adornee = player.Character
-                        HighlightClone.Parent = player.Character:FindFirstChild("HumanoidRootPart")
-                        HighlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                        HighlightClone.Name = "Highlight"
-                    end
-                end
-            end    
-            RunService.Heartbeat:Connect(function()
-                ApplyToCurrentPlayers()
-            end)
+getgenv().esp_loaded = false
+getgenv().Visibility = false
+
+gametab:Toggle('Enable ESP', false, function(value)
+
+    if getgenv().esp_loaded == false and value == true then
+        getgenv().esp_loaded = true
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/skatbr/Roblox-Releases/main/A_simple_esp.lua", true))()
+    end
+    getgenv().Visibility = value   
+
+end)
+
+gametab:Toggle('Player ESP', false, function(value)
+
+    if getgenv().esp_loaded == false and value == true then
+        getgenv().esp_loaded = true
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/skatbr/Roblox-Releases/main/A_simple_esp.lua", true))()
+    end
+    getgenv().cham = value   
+
+end)
+
+gametab:Toggle('Name ESP', false, function(value)
+
+    if getgenv().esp_loaded == false and value == true then
+        getgenv().esp_loaded = true
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/skatbr/Roblox-Releases/main/A_simple_esp.lua", true))()
+    end
+    getgenv().nameESP = value   
+
+end)
+
+gametab:Toggle('Box ESP', false, function(value)
+
+    if getgenv().esp_loaded == false and value == true then
+        getgenv().esp_loaded = true
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/skatbr/Roblox-Releases/main/A_simple_esp.lua", true))()
+    end
+    getgenv().boxESP = value   
+
 end)
 
 gametab:Button('Grab All Coins', function()
