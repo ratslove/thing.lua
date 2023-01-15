@@ -1,5 +1,5 @@
 if game.PlaceId == 155615604 then
-    loadstring(game:HttpGet"https://raw.githubusercontent.com/bruvzz/ducklibrary/main/src.lua")()
+    local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/bruvzz/ducklibrary/main/src.lua")()
 
     game.Players.LocalPlayer.PlayerGui.Home.fadeFrame:Destroy()
     
