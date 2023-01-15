@@ -1,6 +1,6 @@
 if game.PlaceId == 155615604 then
-    local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/bruvzz/ducklibrary/main/src.lua")()
-    
+    loadstring(game:HttpGet"https://raw.githubusercontent.com/bruvzz/ducklibrary/main/src.lua")()
+
     game.Players.LocalPlayer.PlayerGui.Home.fadeFrame:Destroy()
     
     local folder = Instance.new("Folder")
@@ -26,11 +26,17 @@ if game.PlaceId == 155615604 then
         local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
         return rootPart
     end
+    
+    function isNumber(str)
+        if tonumber(str) ~= nil or str == 'inf' then
+            return true
+        end
+    end
 
     FLYING = false
     QEfly = true
-    iyflyspeed = 1
-    vehicleflyspeed = 1
+    iyflyspeed = 3
+    vehicleflyspeed = 3
     function sFLY(vfly)
         repeat wait() until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and getRoot(game.Players.LocalPlayer.Character) and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
         repeat wait() until IYMouse
@@ -236,7 +242,7 @@ if game.PlaceId == 155615604 then
     
     end)
     
-    maintab:Toggle('Fly', false, function(value)
+    maintab:Toggle('Fly', false, function(value, args)
     
         getgenv().flyerwow = value
 
@@ -245,8 +251,32 @@ if game.PlaceId == 155615604 then
             NOFLY()
             wait()
             sFLY()
+            if args[1] and isNumber(args[1]) then
+                iyflyspeed = args[1]
+            end
             
             else if getgenv().flyerwow == false then
+                NOFLY()
+                
+            end
+        end
+    
+    end)
+    
+    maintab:Toggle('Vehicle Fly', false, function(value, args)
+    
+        getgenv().flyerwow2 = value
+
+        if getgenv().flyerwow2 == true then
+            
+            NOFLY()
+            wait()
+            sFLY(true)
+            if args[1] and isNumber(args[1]) then
+                vehiclespeed = args[1]
+                end
+            
+            else if getgenv().flyerwow2 == false then
                 NOFLY()
                 
             end
