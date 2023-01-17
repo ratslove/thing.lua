@@ -138,7 +138,7 @@ if game.PlaceId == 155615604 then
         }
     }
     
-    maintab:Slider('WalkSpeed', 16, 200, 16, function(value1)    
+    maintab:Textbox('WalkSpeed', false, function(value1)    
         
         var.Player.WalkSpeed = value1
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value1
@@ -167,7 +167,7 @@ if game.PlaceId == 155615604 then
     
     end)
     
-    maintab:Slider('JumpPower', 50, 400, 50, function(value2)
+    maintab:Textbox('JumpPower', false, function(value2)
     
         var.Player.JumpPower = value2
         game.Players.LocalPlayer.Character.Humanoid.JumpPower = value2
@@ -185,7 +185,7 @@ if game.PlaceId == 155615604 then
     
     end)
     
-    maintab:Slider('Field of View', 70, 120, 70, function(amount)
+    maintab:Textbox('Field of View', false, function(amount)
         
         game:GetService'Workspace'.Camera.FieldOfView = amount
     
