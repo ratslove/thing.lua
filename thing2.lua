@@ -1512,23 +1512,13 @@ getgenv().boxESP = false
 getgenv().esp_loaded = false
 getgenv().Visibility = false
 
-gametab:Toggle('Enable ESP', false, function(value)
+gametab:Toggle('Toggle ESP', false, function(value)
 
     if getgenv().esp_loaded == false and value == true then
         getgenv().esp_loaded = true
         loadstring(game:HttpGet("https://raw.githubusercontent.com/skatbr/Roblox-Releases/main/A_simple_esp.lua", true))()
     end
     getgenv().Visibility = value   
-
-end)
-
-gametab:Toggle('Player ESP', false, function(value)
-
-    if getgenv().esp_loaded == false and value == true then
-        getgenv().esp_loaded = true
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/skatbr/Roblox-Releases/main/A_simple_esp.lua", true))()
-    end
-    getgenv().cham = value   
 
 end)
 
