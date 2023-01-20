@@ -263,6 +263,12 @@ if game.PlaceId == 155615604 then
     
     end)
     
+    maintab:Textbox('Fly Speed', false, function(value)
+
+		iyflyspeed = value
+    
+    end)
+
     maintab:Toggle('Vehicle Fly', false, function(value, args)
     
         getgenv().flyerwow2 = value
@@ -281,6 +287,12 @@ if game.PlaceId == 155615604 then
                 
             end
         end
+    
+    end)
+
+    maintab:Textbox('Vehicle Fly Speed', false, function(value)
+
+		vehicleflyspeed = value
     
     end)
     
@@ -1484,9 +1496,10 @@ end)
 
 coroutine.wrap(function()
 	while wait() do
-		if States.InfStamina == true then
-            game.Lighting.FogEnd = 100000
-            game.Lighting.FogStart = 16
+		if States.FixLighter == true then
+            if game.Lighting.FogEnd ~= 100000 then
+                game.Lighting.FogEnd = 100000
+            end
         end
     end
 end)
