@@ -1471,37 +1471,18 @@ maintab:Toggle('Fly', false, function(value)
 
 end)
 
-gametab:Toggle('Fix Lighting', false, function(value)
-
-    getgenv().fixthelight = value
-
-    if getgenv().fixthelight == true then
-    
-    States.FixLighter = true
-    
+function Fogger()
     game.Lighting.FogEnd = 100000
-    game.Lighting.FogStart = 16
+end
 
-        else if getgenv().fixthelight == false then
-
-            States.FixLighter = false
-            
-            game.Lighting.FogEnd = 85
-            game.Lighting.FogStart = 16
-
-        end
+gametab:Button('Fix Lighting', function()
+    
+    while true do
+        wait()
+        game.Lighting.FogEnd = 1000000
+        wait()
     end
 
-end)
-
-coroutine.wrap(function()
-	while wait() do
-		if States.FixLighter == true then
-            if game.Lighting.FogEnd ~= 100000 then
-                game.Lighting.FogEnd = 100000
-            end
-        end
-    end
 end)
 
 getgenv().cham = false
