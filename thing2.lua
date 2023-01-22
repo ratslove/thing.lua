@@ -1504,13 +1504,13 @@ end)
 
 gametab:Button('Fix Lighting', function()
     
+    lib:Notification("Notification", "Lighting has now been fixed.", "Close") -- (header, text, closebutton) --
+    
     while true do
         wait()
         game.Lighting.FogEnd = 1000000
         wait()
     end
-
-    lib:Notification("Notification", "Lighting has now been fixed.", "Close") -- (header, text, closebutton) --
 
 end)
 
