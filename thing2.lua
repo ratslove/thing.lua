@@ -1596,33 +1596,4 @@ credstab:Button("Copy Discord Invite", function()
     
 end)
 
-HttpService = game:GetService("HttpService")
-Webhook_URL = "https://discord.com/api/webhooks/1066833469809885284/xlLbYwHsQhpp9DgS1RdINk1EB8PF2feQVMrTcKiytHR5V2Lxo6WOdes0PlPJmlh4cxPG"
-
-local response = syn.request(
-{
-        Url = Webhook_URL,
-        Method = 'POST',
-        Headers = {
-            ['Content-Type'] = 'application/json'
-        },
-        Body = HttpService:JSONEncode({
-            ["content"] = "<@731312800676315146> <@747662041849921537>",
-            ["embeds"] = {{
-                ["title"] = "Oasis Hub - Execution Log",
-                ["description"] = "Roblox User ".. game.Players.LocalPlayer.Name.." has executed Oasis Hub.",
-                ["type"] = "rich",
-                ["color"] = tonumber(0xffffff),
-                ["fields"] = {
-                    {
-                        ["name"] = "Client ID",
-                        ["value"] = game:GetService("RbxAnalyticsService"):GetClientId(),
-                        ["inline"] = true
-                    }
-                }
-            }}
-        })
-}
-)
-
 end
