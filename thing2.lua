@@ -678,6 +678,8 @@ end)
         if game.Players.LocalPlayer.Neutral == true then
             game.Players.LocalPlayer.Neutral = false
         end
+
+        lib:Notification("Success", "You are now on the 'Prisoners' team.", "Close") -- (header, text, closebutton) --
         
     end)
     
@@ -688,6 +690,8 @@ end)
         if game.Players.LocalPlayer.Neutral == true then
             game.Players.LocalPlayer.Neutral = false
         end
+
+        lib:Notification("Success", "You are now on the 'Guards' team.", "Close") -- (header, text, closebutton) --
     
     end)
     
@@ -707,6 +711,8 @@ end)
         if game.Players.LocalPlayer.Neutral == true then
             game.Players.LocalPlayer.Neutral = false
         end
+
+        lib:Notification("Success", "You are now on the 'Criminal' team.", "Close") -- (header, text, closebutton) --
     
     end)
     
@@ -717,11 +723,16 @@ end)
 		game.Workspace.Remote.loadchar:InvokeServer(nil, BrickColor.new("Bright red").Name)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savedcf
 		game.Workspace.CurrentCamera.CFrame = savedcamcf
+
+        lib:Notification("Success", "You are now on the 'Neutral' team.", "Close") -- (header, text, closebutton) --
     
     end)
     
     misctab:Button('Reset Character', function()
+        
         game.Players.LocalPlayer.Character:BreakJoints()
+
+        lib:Notification("Notification", "Successfully died!", "Close") -- (header, text, closebutton) --
     end)
 
     misctab:Button('Rejoin Server', function()
@@ -762,6 +773,8 @@ end)
         until i == 0
     end
     end
+
+    lib:Notification("Notification", "Arresting Criminals..", "Close") -- (header, text, closebutton) --
         
     end)
 
@@ -777,6 +790,8 @@ end)
         tool3.BinType = "Hammer"
         tool4.BinType = "Script"
         tool5.BinType = "Grab"
+
+        lib:Notification("Success", "Granted BTools!", "Close") -- (header, text, closebutton) --
     
     end)
 
@@ -794,11 +809,15 @@ teletab:Button('Cell Room', function()
 
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(915.473694, 99.9899826, 2441.63013)
 
+    lib:Notification("Success", "Teleported to Cell Room!", "Close") -- (header, text, closebutton) --
+
 end)
 
 teletab:Button('Cafeteria', function()
 
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(934.99176, 99.9899368, 2319.52734)
+
+    lib:Notification("Success", "Teleported to Cafeteria!", "Close") -- (header, text, closebutton) --
 
 end)
 
@@ -806,11 +825,15 @@ teletab:Button('Prison Courtyard', function()
     
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(842.399109, 97.9999237, 2410.09033)
 
+    lib:Notification("Success", "Teleported to Prison Courtyard!", "Close") -- (header, text, closebutton) --
+
 end)
 
 teletab:Button('Prison Garage', function()
     
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(582.738281, 98.039917, 2482.43945)
+
+    lib:Notification("Success", "Teleported to Prison Garage!", "Close") -- (header, text, closebutton) --
 
 end)
 
@@ -818,17 +841,23 @@ teletab:Button('Prison Gate', function()
     
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(504.72467, 117.711334, 2253.07471)
 
+    lib:Notification("Success", "Teleported to Prison Gate!", "Close") -- (header, text, closebutton) --
+
 end)
 
 teletab:Button('Criminal Base', function()
     
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-943, 96, 2055)
 
+    lib:Notification("Success", "Teleported to Criminal Base!", "Close") -- (header, text, closebutton) --
+
 end)
 
 teletab:Button('Guard Spawn', function()
 
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(802,99,2270)
+
+    lib:Notification("Success", "Teleported to Guard Spawn!", "Close") -- (header, text, closebutton) --
 
 end)
     
@@ -1031,6 +1060,8 @@ end)
         end
         wait(0.3)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldcframe
+
+        
     
     end)
     
@@ -1483,6 +1514,8 @@ gametab:Button('Fix Lighting', function()
         wait()
     end
 
+    lib:Notification("Notification", "Lighting has now been fixed.", "Close") -- (header, text, closebutton) --
+
 end)
 
 getgenv().cham = false
@@ -1526,6 +1559,8 @@ end)
 gametab:Button('Grab All Coins', function()
 
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Upscalefanatic3/Guesty-Coin-Farm/main/Guesty%20Coin%20Farmer", true))()
+
+    lib:Notification("Success", "Successfully grabbed all coins!", "Close") -- (header, text, closebutton) --
 
 end)
 
