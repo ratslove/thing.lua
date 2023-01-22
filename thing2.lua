@@ -1502,10 +1502,6 @@ maintab:Toggle('Fly', false, function(value)
 
 end)
 
-function Fogger()
-    game.Lighting.FogEnd = 100000
-end
-
 gametab:Button('Fix Lighting', function()
     
     while true do
