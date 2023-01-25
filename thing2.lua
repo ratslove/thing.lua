@@ -396,55 +396,27 @@ end)
 
     charactertab:Toggle('Infinite Stamina', false, function(value)
     
-        getgenv().infstamina = value
-        if getgenv().infstamina == false then
+        stamina_thing = value
+    
+        if stamina_thing == true then
             
-            States.InfStamina = false
-
-            local plr = game:GetService("Players").LocalPlayer
-            for i,v in next, getgc() do 
-                if type(v) == "function" and getfenv(v).script and getfenv(v).script == plr.Character.ClientInputHandler then 
-                    for i2,v2 in next, debug.getupvalues(v) do 
-                        if type(v2) == "number" then 
-                            debug.setupvalue(v, i2, 12)
-                        end
-                    end
-                end
+            lib:Notification('Alert', 'Please Reset to take into effect.', 'Close')
+            
+            local A_1 = game.Players.LocalPlayer.PlayerGui.Home.hud["StaminaFrame"]
+            A_1.Parent = game.Storage
+            
+            
+            else if stamina_thing == false then
+                
+                lib:Notification('Alert', 'Please Reset to take into effect.', 'Close')
+                
+                local A_2 = game.Storage["StaminaFrame"]
+                A_2.Parent = game.Players.LocalPlayer.PlayerGui.Home.hud
+                
             end
-        else if getgenv().infstamina == true then
-            
-            States.InfStamina = true
-            
-            local plr = game:GetService("Players").LocalPlayer
-                        for i,v in next, getgc() do 
-                            if type(v) == "function" and getfenv(v).script and getfenv(v).script == plr.Character.ClientInputHandler then 
-                                for i2,v2 in next, debug.getupvalues(v) do 
-                                    if type(v2) == "number" then 
-                                        debug.setupvalue(v, i2, math.huge)
-                                    end
-                                end
-                            end
-                        end                        
-                    end
-                end
-    end)
+        end
 
-coroutine.wrap(function()
-	while wait() do
-		if States.InfStamina == true then
-            local plr = game:GetService("Players").LocalPlayer
-                        for i,v in next, getgc() do 
-                            if type(v) == "function" and getfenv(v).script and getfenv(v).script == plr.Character.ClientInputHandler then 
-                                for i2,v2 in next, debug.getupvalues(v) do 
-                                    if type(v2) == "number" then 
-                                        debug.setupvalue(v, i2, math.huge)
-                                    end
-                                end
-                            end
-                        end                        
-                    end
-                end
-        end)()
+    end)
 
 charactertab:Toggle('Kill Aura', false, function(value)
 
