@@ -400,18 +400,14 @@ end)
     
         if stamina_thing == true then
             
-            lib:Notification('Alert', 'Please Reset to take into effect.', 'Close')
-            
-            local A_1 = game.Players.LocalPlayer.PlayerGui.Home.hud["StaminaFrame"]
-            A_1.Parent = game.Storage
+            lib:Notification('Alert', 'This feature is currently disabled.', 'Close')
+
+            print("Infinite Stamina: On")
             
             
             else if stamina_thing == false then
                 
-                lib:Notification('Alert', 'Please Reset to take into effect.', 'Close')
-                
-                local A_2 = game.Storage["StaminaFrame"]
-                A_2.Parent = game.Players.LocalPlayer.PlayerGui.Home.hud
+                print("Infinite Stamina: Off")
                 
             end
         end
