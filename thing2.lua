@@ -1,7 +1,5 @@
 if game.PlaceId == 155615604 then
     local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/bruvzz/ducklibrary/main/src.lua")()
-
-    game.Players.LocalPlayer.PlayerGui.Home.fadeFrame:Destroy()
     
     local folder = Instance.new("Folder")
     folder.Name = "Storage"
@@ -834,6 +832,12 @@ end)
         lib:Notification("Success", "Copied Discord Invite to clipboard.", "Close")
     
     end)
+
+    _G.fixFrame = true
+    while _G.fixFrame == true do
+        game.Players.LocalPlayer.PlayerGui.Home.fadeFrame.BackgroundTransparency = 1.000
+        wait()
+    end
     
     elseif game.PlaceId == 3956818381 then
         local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/bruvzz/ducklibrary/main/src.lua")()
