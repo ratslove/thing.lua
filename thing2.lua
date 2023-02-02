@@ -1525,7 +1525,7 @@ gametab:Toggle('Auto Skip Scene', false, function(value)
 
 end)
 
-gametab:Button('Auto Farm Coins', function()  
+gametab:Button('Grab Coins', function()  
 
     getgenv().autoCoin = true
 
