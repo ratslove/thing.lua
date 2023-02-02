@@ -1525,11 +1525,32 @@ gametab:Toggle('Auto Skip Scene', false, function(value)
 
 end)
 
-gametab:Button('Grab All Coins', function()
+gametab:Button('Auto Farm Coins', function()  
 
-    lib:Notification("Notification", "Success. Server Hopping...", "Close")
+    getgenv().autoCoin = true
+
+    spawn(function()
     
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Upscalefanatic3/Guesty-Coin-Farm/main/Guesty%20Coin%20Farmer", true))()
+        local HR = game.Players.LocalPlayer.Character.HumanoidRootPart -- Players Head
+            while wait() do
+                if not getgenv().autoCoin then break end
+                
+                for i, v in pairs(game:GetService("Workspace").Coins:GetDescendants()) do
+                    if v.Name == "TouchInterest" and v.Parent then
+                        -- Fire the FireTouchInterest below.
+                        firetouchinterest(HR, v.Parent, 0)
+                    end
+                end
+            end
+
+            for i, v in pairs(game.Workspace.Coins:DescendantAdded()) do
+                if v.Name == "TouchInterest" and v.Parent then
+                    -- Fire the thing again.
+                    firetouchinterest(HR, v.Parent, 0)
+                end
+            end
+        
+    end)
 
 end)
 
