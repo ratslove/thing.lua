@@ -771,51 +771,44 @@ end)
     
 end)
 
-local dawgs = game.Players.LocalPlayer.Character.HumanoidRootPart
-
-function doStuff()
-
-    if nigerian == "Cell Room" then
-        dawgs.CFrame = CFrame.new(916, 99.9899673, 2448, 1, -1.70197954e-08, -3.39260277e-14, 1.70197954e-08, 1, 7.21635587e-08, 3.26978197e-14, -7.21635587e-08, 1)
-
-    else if nigerian == "Cafeteria" then
-        dawgs.CFrame = CFrame.new(932.999695, 99.9899368, 2288.99463, 0.999998569, 1.30449251e-08, -0.00168087881, -1.29614106e-08, 1, 4.96959665e-08, 0.00168087881, -4.96741102e-08, 0.999998569)
-    
-    else if nigerian == "Guard Spawn" then
-        dawgs.CFrame = CFrame.new(834, 98.5170059, 2316.00708, 0.999998569, -1.23378059e-05, 0.00167511462, 1.98490895e-07, 0.999973774, 0.00724552013, -0.00167516002, -0.00724550989, 0.999972343)
-
-    else if nigerian == "Prison Courtyard" then
-        dawgs.CFrame = CFrame.new(778.999939, 97.9999237, 2472.00391, 0.999999762, -1.46142091e-11, 0.000683857477, -1.34698882e-12, 1, 2.33399469e-08, -0.000683857477, -2.33399415e-08, 0.999999762)
-    
-    else if nigerian == "Prison Garage" then
-        dawgs.CFrame = CFrame.new(582.738281, 98.039917, 2482.43945, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-    
-    else if nigerian == "Prison Gate" then
-        dawgs.CFrame = CFrame.new(468, 98.1899872, 2252.00122, 1, -9.38789758e-12, 0.000121457255, 4.76451864e-12, 1, 3.80658918e-08, -0.000121457255, -3.80658918e-08, 1)
-    
-    else if nigerian == "Criminal Base" then
-        dawgs.CFrame = CFrame.new(-921, 92.5015793, 2190.9978, 0.999999285, -2.92056484e-06, -0.00126135349, -8.70204531e-08, 0.999997139, -0.00238165935, 0.00126135349, 0.00238165748, 0.999996424)
-    
-    else if nigerian == "City" then
-        dawgs.CFrame = CFrame.new(-361, 54.5028076, 1733.99707, 0.999998748, -4.78906168e-06, -0.00160547963, 1.38837322e-07, 0.999995828, -0.00289654895, 0.00160548685, 0.00289654522, 0.999994576)
-    
-    
-    
-    end
-    end
-    end
-    end
-    end
-    end
-    end
-    end
-
-end
-
 teletab:Dropdown('Teleports', {"Cell Room", "Cafeteria", "Guard Spawn", "Prison Courtyard", "Prison Garage", "Prison Gate", "Criminal Base", "City"}, function(v)
 
     nigerian = v
-    doStuff()
+    
+    if nigerian == "Cell Room" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(916, 99.9899673, 2448, 1, -1.70197954e-08, -3.39260277e-14, 1.70197954e-08, 1, 7.21635587e-08, 3.26978197e-14, -7.21635587e-08, 1)
+
+    else if nigerian == "Cafeteria" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(932.999695, 99.9899368, 2288.99463, 0.999998569, 1.30449251e-08, -0.00168087881, -1.29614106e-08, 1, 4.96959665e-08, 0.00168087881, -4.96741102e-08, 0.999998569)
+    
+    else if nigerian == "Guard Spawn" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(834, 98.5170059, 2316.00708, 0.999998569, -1.23378059e-05, 0.00167511462, 1.98490895e-07, 0.999973774, 0.00724552013, -0.00167516002, -0.00724550989, 0.999972343)
+
+    else if nigerian == "Prison Courtyard" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(778.999939, 97.9999237, 2472.00391, 0.999999762, -1.46142091e-11, 0.000683857477, -1.34698882e-12, 1, 2.33399469e-08, -0.000683857477, -2.33399415e-08, 0.999999762)
+    
+    else if nigerian == "Prison Garage" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(582.738281, 98.039917, 2482.43945, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+    
+    else if nigerian == "Prison Gate" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(468, 98.1899872, 2252.00122, 1, -9.38789758e-12, 0.000121457255, 4.76451864e-12, 1, 3.80658918e-08, -0.000121457255, -3.80658918e-08, 1)
+    
+    else if nigerian == "Criminal Base" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-921, 92.5015793, 2190.9978, 0.999999285, -2.92056484e-06, -0.00126135349, -8.70204531e-08, 0.999997139, -0.00238165935, 0.00126135349, 0.00238165748, 0.999996424)
+    
+    else if nigerian == "City" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-361, 54.5028076, 1733.99707, 0.999998748, -4.78906168e-06, -0.00160547963, 1.38837322e-07, 0.999995828, -0.00289654895, 0.00160548685, 0.00289654522, 0.999994576)
+    
+    
+    
+    end
+    end
+    end
+    end
+    end
+    end
+    end
+    end
 
 end)
     
