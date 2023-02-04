@@ -1617,7 +1617,7 @@ credstab:Button("Copy Discord Invite", function()
     
 end)
 
-else if game.PlaceId == 1962086868 then
+else if game.PlaceId == 1962086868 or 7227293156 or 3582763398 or 5253186791 then
 
     local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/bruvzz/ducklibrary/main/src.lua")()
 
